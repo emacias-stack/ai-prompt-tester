@@ -62,23 +62,23 @@ export const Events: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
+    <div>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Header */}
         <div className="mb-8 text-center">
           <div className="inline-flex items-center justify-center w-20 h-14 bg-gradient-to-r from-red-500 to-red-600 rounded-lg mb-4 shadow-lg border-2 border-white/20">
             <span className="text-white font-bold text-lg tracking-wider">PE</span>
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4 bg-gradient-to-r from-gray-900 via-red-800 to-gray-900 bg-clip-text text-transparent">
+          <h1 className="text-4xl md:text-5xl font-bold text-white mb-4 drop-shadow-lg">
             Porsche Events
           </h1>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+          <p className="text-xl text-white/90 max-w-2xl mx-auto drop-shadow-md">
             Discover amazing Porsche events in your area
           </p>
         </div>
 
         {/* Search and Filters */}
-        <div className="mb-8">
+        <div className="mb-8 backdrop-blur-sm rounded-lg p-6 shadow-lg">
           {/* Search Bar */}
           <form onSubmit={handleSearch} className="mb-4">
             <div className="flex gap-4">
@@ -226,6 +226,64 @@ export const Events: React.FC = () => {
           error={error}
           onAttend={handleAttend}
         />
+
+        {/* Event Categories Overview */}
+        <section className="mt-16 backdrop-blur-sm rounded-lg p-8 shadow-lg">
+          <h2 className="text-2xl font-bold text-gray-900 mb-6">Event Categories</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {eventCategories.map((category) => (
+              <div key={category.value} className="text-center p-4 rounded-lg bg-gray-50 hover:bg-gray-100 transition-colors">
+                <div className="text-2xl mb-2">{category.icon}</div>
+                <h3 className="font-semibold text-gray-900 mb-1">{category.label}</h3>
+                <p className="text-sm text-gray-600">
+                  {category.value === 'track-day' && 'Performance driving and track days'}
+                  {category.value === 'car-show' && 'Car shows and exhibitions'}
+                  {category.value === 'meet' && 'Social gatherings and meets'}
+                  {category.value === 'rally' && 'Rally events and road trips'}
+                  {category.value === 'conference' && 'Educational workshops and seminars'}
+                  {category.value === 'auction' && 'Auction events and sales'}
+                  {category.value === 'other' && 'Other special events'}
+                </p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Popular Event Types */}
+        <section className="mt-8 backdrop-blur-sm rounded-lg p-8 shadow-lg">
+          <h2 className="text-2xl font-bold text-gray-900 mb-6">Popular Event Types</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {eventTypes.map((type) => (
+              <div key={type.value} className="flex items-center p-4 rounded-lg bg-gray-50 hover:bg-gray-100 transition-colors">
+                <div className="w-10 h-10 bg-red-500 rounded-full flex items-center justify-center mr-4">
+                  <span className="text-white text-sm font-bold">{type.label.charAt(0)}</span>
+                </div>
+                <div>
+                  <h3 className="font-semibold text-gray-900">{type.label}</h3>
+                  <p className="text-sm text-gray-600">
+                    {type.value === 'porsche-only' && 'Exclusive to Porsche vehicles'}
+                    {type.value === 'mixed-brands' && 'Open to all car brands'}
+                    {type.value === 'vintage' && 'Classic and vintage vehicles'}
+                    {type.value === 'modern' && 'Modern and contemporary vehicles'}
+                    {type.value === 'racing' && 'Competitive racing events'}
+                    {type.value === 'social' && 'Social networking events'}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Call to Action */}
+        <section className="mt-8 bg-gradient-to-r from-red-500 to-red-600 rounded-lg p-8 text-center text-white">
+          <h2 className="text-2xl font-bold mb-4">Can't Find What You're Looking For?</h2>
+          <p className="text-red-100 mb-6">
+            Create your own Porsche event and share it with the community!
+          </p>
+          <Button variant="secondary" size="lg" className="bg-white text-red-600 hover:bg-gray-100">
+            Create Event
+          </Button>
+        </section>
       </div>
     </div>
   );

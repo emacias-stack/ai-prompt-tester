@@ -6,6 +6,7 @@ import { Events } from './pages/Events';
 import { Login } from './pages/Login';
 import { Register } from './pages/Register';
 import { useAuthStore } from './store/authStore';
+import { DynamicBackground } from './components/common/DynamicBackground';
 
 // Protected Route Component
 const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -32,7 +33,7 @@ const PublicRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 function App() {
   return (
     <Router>
-      <div className="min-h-screen bg-gray-50">
+      <DynamicBackground>
         <Header />
         <main>
           <Routes>
@@ -57,7 +58,7 @@ function App() {
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </main>
-      </div>
+      </DynamicBackground>
     </Router>
   );
 }

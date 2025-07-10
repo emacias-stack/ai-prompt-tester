@@ -21,7 +21,6 @@ html {
 }
 
 body {
-  background: linear-gradient(135deg, var(--porsche-gray) 0%, var(--porsche-warm-gray) 100%);
   color: var(--porsche-black);
   line-height: 1.6;
   min-height: 100vh;
