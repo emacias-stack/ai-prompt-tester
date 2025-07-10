@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import type { Event, SearchFilters } from '../types';
-import { mockEvents, searchEvents, getEventsByCategory, getEventsByLocation } from '../data/mockData';
+import { mockEvents, searchEvents, getEventsByLocation } from '../data/mockData';
 
 interface EventsState {
   events: Event[];
@@ -78,7 +78,7 @@ export const useEventsStore = create<EventsStore>((set, get) => ({
   },
 
   searchEvents: (query: string) => {
-    const { events } = get();
+    // const { events } = get();
     const results = searchEvents(query);
     
     set({
@@ -88,11 +88,10 @@ export const useEventsStore = create<EventsStore>((set, get) => ({
   },
 
   filterEvents: (newFilters: Partial<SearchFilters>) => {
-    const { events } = get();
     const currentFilters = get().filters;
     const updatedFilters = { ...currentFilters, ...newFilters };
     
-    let filtered = events;
+    let filtered = mockEvents;
     
     // Apply search query
     if (updatedFilters.query) {

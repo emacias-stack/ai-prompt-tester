@@ -8,17 +8,6 @@ import { Register } from './pages/Register';
 import { useAuthStore } from './store/authStore';
 import { DynamicBackground } from './components/common/DynamicBackground';
 
-// Protected Route Component
-const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const { isAuthenticated } = useAuthStore();
-  
-  if (!isAuthenticated) {
-    return <Navigate to="/login" replace />;
-  }
-  
-  return <>{children}</>;
-};
-
 // Public Route Component (redirects to home if already authenticated)
 const PublicRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const { isAuthenticated } = useAuthStore();
@@ -33,7 +22,7 @@ const PublicRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 function App() {
   return (
     <Router>
-      <DynamicBackground>
+      <DynamicBackground currentSectionIndex={0}>
         <Header />
         <main>
           <Routes>
